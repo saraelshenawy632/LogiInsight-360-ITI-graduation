@@ -3,9 +3,9 @@ Logi Insight 360 | Logistics & Supply Chain Analytics Platform
 
 Logi Insight 360 is a full-stack logistics analytics platform designed to help businesses monitor shipment performance, operational efficiency, and logistics KPIs through interactive dashboards and data visualization. The platform provides real-time insights into logistics operations, enabling data-driven decision-making and performance optimization.
 
-🌐 Live Demo
+## 🚀 Live Demo
 
-Logi Insight 360 Live Demo
+👉 [View Live Application](https://logi-insight-360-4cpc.vercel.app/)
 
 🎯 Objectives
 Monitor logistics and supply chain performance.
