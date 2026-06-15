@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/19/2026 12:18:47 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-D83GNDU"
+  DTS:CreatorName="DESKTOP-D83GNDU\Original Nassar"
+  DTS:DTSID="{E1183A1E-F5BA-4EB6-9E35-843665B26F29}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{CCF61FF5-DB6F-4E3D-8BF7-575354BA56CA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-D83GNDU]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{74BDAA16-C6AD-40F7-B73F-D45FAD5236B3}"
+      DTS:ObjectName="DESKTOP-D83GNDU">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-D83GNDU;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{74BDAA16-C6AD-40F7-B73F-D45FAD5236B3}DESKTOP-D83GNDU;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-D83GNDU 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DA9580D6-013D-4A55-AB3A-3DFAC3891821}"
+      DTS:ObjectName="DESKTOP-D83GNDU 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-D83GNDU;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{DA9580D6-013D-4A55-AB3A-3DFAC3891821}DESKTOP-D83GNDU 1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-D83GNDU.Logi_ERP_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E3DFF2A8-2C46-43E7-8BD3-C0E8849FE819}"
+      DTS:ObjectName="DESKTOP-D83GNDU.Logi_ERP_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-D83GNDU;Initial Catalog=Logi_ERP_DWH;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{E3DFF2A8-2C46-43E7-8BD3-C0E8849FE819}DESKTOP-D83GNDU.Logi_ERP_DWH;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{89E3F4D7-1AC1-44A7-A1C8-F008DA0EF673}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Generate Batch ID"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2ECAF9B8-97DA-484E-904B-AC8C97E852A8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Generate Batch ID"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{74BDAA16-C6AD-40F7-B73F-D45FAD5236B3}"
+          SQLTask:SqlStatementSource="INSERT INTO DWH.ETL_Batch_Log&#xA;         (Started_At, Status)&#xA;OUTPUT INSERTED.Batch_ID&#xA;VALUES (SYSDATETIME(), 'Running')"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::BatchID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="BatchID"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Success State Log"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C2430DEF-B650-4FB8-BC16-5A60088BFB18}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Success State Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E3DFF2A8-2C46-43E7-8BD3-C0E8849FE819}"
+          SQLTask:SqlStatementSource="UPDATE DWH.ETL_Batch_Log&#xA;SET Status = 'Completed', Ended_At = SYSDATETIME()&#xA;WHERE Batch_ID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{599AD80C-49E1-4B1A-A328-E2B7CB27E9E2}"
+      DTS:From="Package\Generate Batch ID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Success State Log" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{CC0CB7DB-37A6-4087-8B2A-5D70ECA0E247}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{B37F1196-4A11-4297-AC49-F1A4508C8E3C}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{31B419A0-13C3-44DF-AB55-D0B755E65FB6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{E3DFF2A8-2C46-43E7-8BD3-C0E8849FE819}"
+              SQLTask:SqlStatementSource="UPDATE DWH.ETL_Batch_Log&#xA;SET Status = 'Failed', Ended_At = SYSDATETIME()&#xA;WHERE Batch_ID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165.6,41.6"
+          Id="Package\Generate Batch ID"
+          TopLeft="117.423079360607,59.8636375173886" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Success State Log"
+          TopLeft="86.9230788161417,171.80000303487" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="200.223079360607,101.463637517389">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31.7000005444654,70.3363655174814"
+              Start="0,0"
+              End="-31.7000005444654,62.8363655174814">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.1681827587407" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.1681827587407"
+                    Point2="0,35.1681827587407"
+                    Point3="-4,35.1681827587407" />
+                  <mssgle:LineSegment
+                    End="-27.7000005444654,35.1681827587407" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27.7000005444654,35.1681827587407"
+                    Point2="-31.7000005444654,35.1681827587407"
+                    Point3="-31.7000005444654,39.1681827587407" />
+                  <mssgle:LineSegment
+                    End="-31.7000005444654,62.8363655174814" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package.EventHandlers[OnError]\Execute SQL Task"
+          TopLeft="820.999987766147,99.9999985098839" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-D83GNDU.Logi_ERP_OLTP"
+  DTS:DTSID="{2928C689-16FF-4A87-8386-761E27F50035}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=DESKTOP-D83GNDU;Initial Catalog=Logi_ERP_OLTP;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-LogiInsight360_ETL-{2928C689-16FF-4A87-8386-761E27F50035}DESKTOP-D83GNDU.Logi_ERP_OLTP;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
